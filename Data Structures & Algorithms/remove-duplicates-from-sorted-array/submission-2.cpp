@@ -1,0 +1,32 @@
+class Solution {
+public:
+//[2,10,30,10,30,30]
+//          L
+//             R
+//{2, 10, 30}
+
+    int removeDuplicates(vector<int>& nums) {
+        int left=0;
+        int right=0;
+        set<int>s;
+        while(right<nums.size()){
+            if(!s.contains(nums[right])){
+                s.insert(nums[right]);
+                if(left==right){
+                    left+=1;
+                    right+=1;
+                }else{
+                    int temp = nums[left];
+                    nums[left] = nums[right];
+                    nums[right]=temp;
+                    left+=1;
+                    right+=1;
+                }
+                
+            }else{
+                right+=1;
+            }
+        }
+        return left;
+    }
+};
